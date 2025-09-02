@@ -1,0 +1,65 @@
+# ================================
+# LLM (Large Language Model) Config
+# ================================
+LLM:
+  # Name of the model you are running (example: qwen2:5-7b-instruct, llama3, etc.)
+  MODEL_NAME: qwen2:5-7b-instruct   
+
+  # Base URL of your LLM API (if using LM Studio, Ollama, or similar)
+  BASE_URL: http://localhost:1234/v1
+
+  # API Key for authentication (set a dummy value if your LLM doesn’t need one)
+  API_KEY: your_api_key_here
+
+
+# ================================
+# Database Config
+# ================================
+DB:
+  # MongoDB connection string (replace with your own host, port, and database)
+  MONGO_URI: mongodb://127.0.0.1:27017/
+
+
+# ================================
+# Home Assistant Config
+# ================================
+HA:
+  # URL of your Home Assistant instance
+  HASS_URL: http://homeassistant.local:8123/
+
+  # Long-lived access token generated from your Home Assistant profile
+  HASS_TOKEN: your_homeassistant_token_here
+
+
+# ================================
+# Home Assistant Tools (Entities)
+# ================================
+HA_TOOLS:
+  # Example entity IDs from Home Assistant. Replace with your actual entities.
+  LIGHT_ENTITY: light.example_light
+  TEMPERATURE_ENTITY: sensor.example_temperature
+  HUMIDITY_ENTITY: sensor.example_humidity
+  AMBIENT_LIGHT_ENTITY: sensor.example_ambient_light
+  SOUND_LEVEL_ENTITY: sensor.example_sound_level
+
+
+# ================================
+# Text-to-Speech Config
+# ================================
+TTS:
+  # API endpoint for your TTS server (GPT-SoVITS)
+  API_URL: http://127.0.0.1:9880/
+
+  # Default prompt text used to test or initialize the TTS engine
+  prompt_text: This is a sample TTS prompt. Replace with your own test sentence.
+
+
+# ================================
+# Spider-Bot Config (Custom Hardware)
+# ================================
+SPIDER-BOT:
+  # Bluetooth or Wi-Fi MAC address of your bot (dummy value here)
+  MAC_ADDRESS: 00:11:22:33:44:55
+
+  # Subnet used in your local network for bot discovery
+  SUBNET: 192.168.1.0/24
