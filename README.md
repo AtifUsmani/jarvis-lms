@@ -1,3 +1,4 @@
+# This is Highly Experimental. It might not work on your computer
 
 # Project Configuration Guide
 
