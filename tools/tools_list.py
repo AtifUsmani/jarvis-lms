@@ -1,23 +1,15 @@
-from datetime import datetime
 from langchain.tools import Tool
-from tools.tools import get_temperature, get_humidity, remember_fact, recall_fact
-from tools.weather import get_weather
+from tools.tools import get_temperature, get_humidity, get_date_time
 from tools.system_tools import system_status_tool
 from robots.spider_bot import esp_walk
+from memory.memory import search_memories, get_all_memories, add_memory
 
-def get_time(_):
-    return f"The current time is {datetime.now().strftime('%H:%M:%S')}"
 
 tools = [
     Tool.from_function(
-        name="get_time",
-        func=get_time,
-        description="Returns the current time."
-    ),
-    Tool.from_function(
-        name="get_weather",
-        func=get_weather,
-        description="Returns the current weather."
+        name="get_date_time",
+        func=get_date_time,
+        description="Returns the current date and time."
     ),
     Tool.from_function(
         name="esp_walk",
@@ -39,14 +31,19 @@ tools = [
         func=system_status_tool,
         description="Check real-time CPU, RAM, disk, network, and GPU usage."
     ),
-    # Tool.from_function(
-    #     name="remember_fact",
-    #     func=remember_fact,
-    #     description="Use this to store facts or user preferences in memory. Input should be in the format: '<key>: <value>'."
-    # ),
-    # Tool.from_function(
-    #     name="recall_fact",
-    #     func=recall_fact,
-    #     description="Use this to recall facts or preferences stored earlier. Input should be the key you want to retrieve."
-    # )
+    Tool(
+        name="search_memories",
+        func=search_memories,
+        description="Search memory with the given query"
+    ),
+    Tool(
+        name="get_all_memories",
+        func=get_all_memories,
+        description="Retrieve all memories about the user."
+    ),
+    Tool(
+        name="add_memory",
+        func=add_memory,
+        description="Add messages to memory."
+    )
 ]

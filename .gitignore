@@ -20,3 +20,7 @@ tts/your_ref.wav
 tree_view.py
 .devcontainer
 tree-view.py
+GPT-SoVITS-v3lora-20250228/
+main_with_memory.py
+main_with_stt.py
+.fleet/

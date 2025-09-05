@@ -2,11 +2,11 @@
 
 # Project Configuration Guide
 
-This project uses **`uv`** as the package manager and includes integrations with:
+This project was built with **LM Studio** and the **qwen2.5-7b-instruct** LLM in mind.
+It now uses **Mem0** for long-term memory and integrates with:
 - A local/remote **LLM (Large Language Model)**
-- **MongoDB** for database storage
 - **Home Assistant** for smart home control
-- **TTS (Text-to-Speech)** service
+- **TTS (Text-to-Speech)** via GPT-SoVITS
 - A custom **Spider-Bot**
 
 ---
@@ -23,11 +23,12 @@ cp example.yaml config.yaml
 ### Sections in `config.yaml`
 
 * **LLM** → Model name, API base URL, and API key (if needed).
-* **DB** → MongoDB connection string.
 * **HA** → Home Assistant URL and token.
 * **HA\_TOOLS** → Entity IDs (light, sensors, etc.).
 * **TTS** → Text-to-Speech API endpoint and test sentence.
 * **SPIDER-BOT** → Bot MAC address and network subnet.
+
+> ⚠️ **Important:** Update the absolute path of your `config.yaml` inside `memory/memory.py`.
 
 ---
 
@@ -39,18 +40,6 @@ cp example.yaml config.yaml
 
 ---
 
-## 🗄️ Database Setup
-
-Install MongoDB locally or use Docker:
-
-```bash
-docker run -d -p 27017:27017 --name mongo mongo:latest
-```
-
-Update your `MONGO_URI` in `config.yaml` to match your host.
-
----
-
 ## 📦 Installation (with `uv`)
 
 1. Install dependencies:
@@ -59,43 +48,42 @@ Update your `MONGO_URI` in `config.yaml` to match your host.
    uv sync
    ```
 
-2. Run your project (example entrypoint):
+2. Run your project:
 
    ```bash
-   uv run python '.\main with stt.py'
+   uv run python main.py
    ```
 
 ---
 
-## 📂 Folder Structure
+## 🎙️ STT, TTS & Wake Word Options
 
+Inside `main.py`, you can enable or disable features by setting the following flags:
+
+```python
+USE_STT = True       # Speech-to-Text
+USE_TTS = True       # Text-to-Speech
+USE_WAKEWORD = True  # Wake word detection
 ```
-jarvis
-    ├── .gitignore
-    ├── README.md
-    ├── example.yaml
-    ├── main with memory.py
-    ├── main with stt and wakeword.py
-    ├── main with stt.py
-    ├── memory
-    │   ├── memory.py
-    │   └── memory_utils.py
-    ├── pyproject.toml
-    ├── react_prompt.py
-    ├── robots
-    │   └── spider_bot.py
-    ├── stt
-    │   ├── test_stt.py
-    │   ├── vosk-model-small-en-us-0.15  # Place vosk here
-    │   └── wakeword.py
-    ├── tools
-    │   ├── system_tools.py
-    │   ├── tools.py
-    │   ├── tools_list.py
-    │   └── weather.py
-    └── tts
-        ├── tts.py
-        └── your_ref.wav # Your reference audio here
-```
+
+This gives you full control over which components are active.
 
 ---
+
+## 🗣️ Text-to-Speech (TTS)
+
+The project uses **GPT-SoVITS** for Text-to-Speech.
+You need to **set up and start the TTS service manually** before running the project.
+
+---
+
+## 🙌 Credits
+
+This project stands on the shoulders of amazing open-source tools and research:
+
+* **[**LM Studio**](https://lmstudio.ai/)** – LLM hosting and API interface
+* **[**Qwen2.5-7B-Instruct**](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct)** – Language model backend
+* **[**Mem0**](https://github.com/mem0ai/mem0)** – Long-term memory system
+* **[**Home Assistant**](https://www.home-assistant.io/)** – Smart home integration
+* **[**GPT-SoVITS**](https://github.com/RVC-Boss/GPT-SoVITS)** – Text-to-Speech engine
+* **[**Vosk**](https://alphacephei.com/vosk/)** – Speech recognition / wake word detection

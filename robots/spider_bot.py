@@ -26,6 +26,6 @@ def esp_walk(steps: int):
     if ip == None:
         return "Command failed. Retry again."
     else:
-        url = f"http://{ip}/walk"
+        url = f"http://{ip}/walkForward"
         resp = requests.get(url, timeout=10, params={"steps": steps})
         return resp.text

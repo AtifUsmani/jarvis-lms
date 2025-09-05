@@ -1,14 +1,20 @@
 # ================================
+# User Config
+# ================================
+USER_ID: your_user_id_here
+
+
+# ================================
 # LLM (Large Language Model) Config
 # ================================
 LLM:
-  # Name of the model you are running (example: qwen2:5-7b-instruct, llama3, etc.)
-  MODEL_NAME: qwen2:5-7b-instruct   
+  # Name of the model you are running
+  MODEL_NAME: your_model_name_here
 
-  # Base URL of your LLM API (if using LM Studio, Ollama, or similar)
+  # Base URL of your LLM API
   BASE_URL: http://localhost:1234/v1
 
-  # API Key for authentication (set a dummy value if your LLM doesn’t need one)
+  # API Key for authentication
   API_KEY: your_api_key_here
 
 
@@ -16,8 +22,11 @@ LLM:
 # Database Config
 # ================================
 DB:
-  # MongoDB connection string (replace with your own host, port, and database)
-  MONGO_URI: mongodb://127.0.0.1:27017/
+  # Qdrant vector DB host
+  QDRANT_HOST: 127.0.0.1
+
+  # Embedding model dimensions
+  EMBEDDINGMODELDIMS: 768
 
 
 # ================================
@@ -27,7 +36,7 @@ HA:
   # URL of your Home Assistant instance
   HASS_URL: http://homeassistant.local:8123/
 
-  # Long-lived access token generated from your Home Assistant profile
+  # Long-lived access token
   HASS_TOKEN: your_homeassistant_token_here
 
 
@@ -35,7 +44,6 @@ HA:
 # Home Assistant Tools (Entities)
 # ================================
 HA_TOOLS:
-  # Example entity IDs from Home Assistant. Replace with your actual entities.
   LIGHT_ENTITY: light.example_light
   TEMPERATURE_ENTITY: sensor.example_temperature
   HUMIDITY_ENTITY: sensor.example_humidity
@@ -47,10 +55,7 @@ HA_TOOLS:
 # Text-to-Speech Config
 # ================================
 TTS:
-  # API endpoint for your TTS server (GPT-SoVITS)
   API_URL: http://127.0.0.1:9880/
-
-  # Default prompt text used to test or initialize the TTS engine
   prompt_text: This is a sample TTS prompt. Replace with your own test sentence.
 
 
@@ -58,8 +63,5 @@ TTS:
 # Spider-Bot Config (Custom Hardware)
 # ================================
 SPIDER-BOT:
-  # Bluetooth or Wi-Fi MAC address of your bot (dummy value here)
   MAC_ADDRESS: 00:11:22:33:44:55
-
-  # Subnet used in your local network for bot discovery
   SUBNET: 192.168.1.0/24
